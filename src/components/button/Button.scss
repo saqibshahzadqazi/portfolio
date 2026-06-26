@@ -1,0 +1,50 @@
+@import "../../_globalColor";
+
+.main-button {
+  background: linear-gradient(135deg, $buttonColor 0%, $buttonHover 100%);
+  border: solid 1px transparent;
+  color: $textColorDark;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  width: max-content;
+  padding: 13px 26px;
+  margin-right: 50px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin-top: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(67, 56, 202, 0.28);
+  transition: all 0.3s ease-in-out 0s;
+}
+.main-button:hover {
+  background: linear-gradient(135deg, $buttonHover 0%, $buttonColor 100%);
+  color: $textColorDark;
+  box-shadow: 0 10px 26px rgba(67, 56, 202, 0.42);
+  transition: all 0.3s ease 0s;
+  transform: translateY(-3px);
+}
+.project-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.project-button > .main-button {
+  margin-right: 0 !important;
+}
+/* Media Query */
+@media (max-width: 768px) {
+  .main-button {
+    font-size: 0.938rem;
+    padding: 12px 18px;
+    margin-right: 0px;
+  }
+}
+@media (max-width: 320px) {
+  .main-button {
+    font-size: 0.75rem;
+  }
+}

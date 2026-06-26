@@ -1,0 +1,90 @@
+@import "./globalColor";
+
+.App {
+  text-align: center;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: $appHeaderBG;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(0.625rem + 2vmin);
+  color: $textColorDark;
+}
+
+.App-link {
+  color: $appLink;
+}
+
+.subTitle {
+  color: $subTitle;
+}
+
+/* ============================================================
+   Professional polish layer
+   ============================================================ */
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Card lift + refined shadows */
+.project-card,
+.certificate-card,
+.education-card-container {
+  border-radius: 14px !important;
+  box-shadow: 0 6px 22px rgba(17, 24, 39, 0.07) !important;
+  transition: transform 0.28s ease, box-shadow 0.28s ease !important;
+}
+
+.project-card:hover,
+.certificate-card:hover,
+.education-card-container:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 16px 38px rgba(67, 56, 202, 0.16) !important;
+}
+
+/* Project images: rounded top corners */
+.project-image,
+.card-image {
+  border-radius: 14px 14px 0 0;
+}
+
+/* Software skill icons: subtle interactive feel */
+.software-skill-inline > i,
+.software-skill-inline > p {
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.software-skill-inline:hover > i {
+  color: $skillsColor !important;
+  transform: translateY(-4px) scale(1.08);
+}
+
+/* Section headings: tighter, more confident */
+.skills-heading,
+.project-title {
+  letter-spacing: -0.5px;
+}
+
+/* Smooth scrolling for in-page nav */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Social icons: gentle hover lift */
+.icon-button {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.icon-button:hover {
+  transform: translateY(-3px);
+}

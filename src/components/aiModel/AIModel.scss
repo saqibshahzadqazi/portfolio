@@ -1,0 +1,483 @@
+/* Shared cool palette aligned with the website indigo theme */
+$c1: #4338ca;
+$c2: #6366f1;
+$c3: #818cf8;
+$c4: #a78bfa;
+$cy: #38bdf8;
+
+.aim {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 700px;
+}
+
+.aim-card {
+  height: 180px;
+  border-radius: 14px 14px 0 0;
+}
+
+.aim-modal {
+  height: 100%;
+  min-height: 200px;
+  width: 100%;
+  border-radius: 14px 14px 0 0;
+}
+
+/* shared dark-indigo backdrop with faint grid (cohesion across all models) */
+.aim-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(99, 102, 241, 0.25), transparent 65%),
+    linear-gradient(150deg, #1e1b4b 0%, #312e81 60%, #3730a3 100%);
+}
+.aim-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(129, 140, 248, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(129, 140, 248, 0.1) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(circle at 50% 50%, #000 55%, transparent 85%);
+}
+
+.aim-stage {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+/* ===== 0. Neural network ===== */
+.aim-neural {
+  width: 116px;
+  height: 100px;
+  overflow: visible;
+}
+.aim-edge {
+  stroke: $c3;
+  stroke-width: 1;
+  opacity: 0.25;
+  animation: aim-edge-fire 2.6s ease-in-out infinite;
+}
+@keyframes aim-edge-fire {
+  0%,
+  100% {
+    opacity: 0.18;
+  }
+  50% {
+    opacity: 0.85;
+    stroke: $cy;
+  }
+}
+.aim-nnode {
+  fill: #fff;
+  filter: drop-shadow(0 0 5px $c2);
+  animation: aim-node-pulse 2.2s ease-in-out infinite;
+}
+@keyframes aim-node-pulse {
+  0%,
+  100% {
+    r: 3.2px;
+    fill: $c3;
+  }
+  50% {
+    r: 4.4px;
+    fill: #fff;
+  }
+}
+
+/* ===== 1. Wireframe cube ===== */
+.aim-cube-scene {
+  width: 80px;
+  height: 80px;
+  perspective: 320px;
+}
+.aim-cube {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  transform-style: preserve-3d;
+  animation: aim-cube-spin 9s linear infinite;
+}
+@keyframes aim-cube-spin {
+  from {
+    transform: rotateX(-20deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(-20deg) rotateY(360deg);
+  }
+}
+.aim-face {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 1.5px solid $c3;
+  background: rgba(99, 102, 241, 0.12);
+  box-shadow: inset 0 0 18px rgba(56, 189, 248, 0.25);
+}
+.aim-face-front {
+  transform: translateZ(40px);
+}
+.aim-face-back {
+  transform: rotateY(180deg) translateZ(40px);
+}
+.aim-face-right {
+  transform: rotateY(90deg) translateZ(40px);
+}
+.aim-face-left {
+  transform: rotateY(-90deg) translateZ(40px);
+}
+.aim-face-top {
+  transform: rotateX(90deg) translateZ(40px);
+}
+.aim-face-bottom {
+  transform: rotateX(-90deg) translateZ(40px);
+}
+
+/* ===== 2. Radar ===== */
+.aim-radar {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+}
+.aim-radar-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(129, 140, 248, 0.5);
+}
+.aim-radar-ring.r2 {
+  inset: 18%;
+}
+.aim-radar-ring.r3 {
+  inset: 36%;
+}
+.aim-radar-cross {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(129, 140, 248, 0.4), rgba(129, 140, 248, 0.4)) center /
+      100% 1px no-repeat,
+    linear-gradient(90deg, rgba(129, 140, 248, 0.4), rgba(129, 140, 248, 0.4))
+      center / 1px 100% no-repeat;
+}
+.aim-radar-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(56, 189, 248, 0.55),
+    transparent 70deg
+  );
+  animation: aim-spin360 2.6s linear infinite;
+}
+@keyframes aim-spin360 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.aim-blip {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 9px $cy;
+  animation: aim-blip-flash 2.6s ease-in-out infinite;
+}
+.aim-blip.b1 {
+  top: 28%;
+  left: 60%;
+}
+.aim-blip.b2 {
+  top: 62%;
+  left: 38%;
+  animation-delay: 0.9s;
+}
+.aim-blip.b3 {
+  top: 44%;
+  left: 70%;
+  animation-delay: 1.6s;
+}
+@keyframes aim-blip-flash {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* ===== 3. Orbits ===== */
+.aim-orbits {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  transform: rotateX(60deg);
+  transform-style: preserve-3d;
+}
+.aim-oring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(129, 140, 248, 0.55);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+  animation: aim-spin360 6s linear infinite;
+}
+.aim-oring.o2 {
+  inset: 16%;
+  border-color: rgba(167, 139, 250, 0.6);
+  animation-duration: 4s;
+  animation-direction: reverse;
+}
+.aim-oring.o3 {
+  inset: 32%;
+  border-style: dashed;
+  border-color: rgba(56, 189, 248, 0.6);
+  animation-duration: 8s;
+}
+.aim-ocore {
+  position: absolute;
+  inset: 42%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #fff, $c2 55%, $c1);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.9);
+  transform: translateZ(16px);
+  animation: aim-core-pulse 2.4s ease-in-out infinite;
+}
+@keyframes aim-core-pulse {
+  0%,
+  100% {
+    transform: translateZ(16px) scale(1);
+  }
+  50% {
+    transform: translateZ(16px) scale(1.3);
+  }
+}
+.aim-electron {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px;
+  border-radius: 50%;
+  background: $cy;
+  box-shadow: 0 0 10px $cy;
+}
+.aim-electron.e1 {
+  animation: aim-orbit 4.5s linear infinite;
+}
+.aim-electron.e2 {
+  animation: aim-orbit 4.5s linear infinite -1.5s;
+}
+.aim-electron.e3 {
+  animation: aim-orbit 4.5s linear infinite -3s;
+}
+@keyframes aim-orbit {
+  from {
+    transform: rotateZ(0deg) translateX(52px) rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg) translateX(52px) rotateZ(-360deg);
+  }
+}
+
+/* ===== 4. Equalizer ===== */
+.aim-eq {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 80px;
+}
+.aim-bar {
+  width: 7px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, $cy, $c2);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+  animation: aim-eq-bounce 1.1s ease-in-out infinite alternate;
+}
+@keyframes aim-eq-bounce {
+  from {
+    height: 14px;
+  }
+  to {
+    height: 76px;
+  }
+}
+
+/* ===== 5. Document scan ===== */
+.aim-doc {
+  position: relative;
+  width: 92px;
+  height: 104px;
+  border: 1.5px solid rgba(129, 140, 248, 0.45);
+  border-radius: 6px;
+  background: rgba(30, 27, 75, 0.4);
+  overflow: hidden;
+  padding: 8px;
+}
+.aim-doc-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 5px;
+  width: 100%;
+  height: 100%;
+}
+.aim-cell {
+  border-radius: 2px;
+  background: rgba(129, 140, 248, 0.25);
+  animation: aim-cell-fill 3s ease-in-out infinite;
+}
+@keyframes aim-cell-fill {
+  0%,
+  100% {
+    background: rgba(129, 140, 248, 0.2);
+  }
+  50% {
+    background: $cy;
+    box-shadow: 0 0 6px $cy;
+  }
+}
+.aim-doc-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(56, 189, 248, 0.55),
+    transparent
+  );
+  animation: aim-scan 2.6s ease-in-out infinite;
+}
+@keyframes aim-scan {
+  0%,
+  100% {
+    top: -16px;
+  }
+  50% {
+    top: 104px;
+  }
+}
+
+/* ===== 6. Circular audio ===== */
+.aim-circ {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+}
+.aim-cbar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 16px;
+  margin-left: -2px;
+  border-radius: 2px;
+  transform-origin: 50% 100%;
+  background: linear-gradient($cy, $c2);
+  animation: aim-cbar-pulse 1.2s ease-in-out infinite alternate;
+}
+@keyframes aim-cbar-pulse {
+  from {
+    height: 10px;
+    opacity: 0.6;
+  }
+  to {
+    height: 26px;
+    opacity: 1;
+  }
+}
+.aim-circ-core {
+  position: absolute;
+  inset: 38%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #fff, $c2 60%, $c1);
+  box-shadow: 0 0 18px rgba(99, 102, 241, 0.8);
+  animation: aim-core-pulse2 2s ease-in-out infinite;
+}
+@keyframes aim-core-pulse2 {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.18);
+  }
+}
+
+/* ===== 7. DNA helix ===== */
+.aim-helix {
+  position: relative;
+  width: 90px;
+  height: 110px;
+}
+.aim-helix-row {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: aim-helix-rot 3s linear infinite;
+}
+@keyframes aim-helix-rot {
+  0% {
+    transform: scaleX(1);
+  }
+  25% {
+    transform: scaleX(0.1);
+  }
+  50% {
+    transform: scaleX(-1);
+  }
+  75% {
+    transform: scaleX(0.1);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+.aim-helix-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+.aim-helix-dot.a {
+  background: $cy;
+  box-shadow: 0 0 8px $cy;
+}
+.aim-helix-dot.b {
+  background: $c4;
+  box-shadow: 0 0 8px $c4;
+}
+.aim-helix-rung {
+  flex: 1;
+  height: 2px;
+  margin: 0 2px;
+  background: rgba(129, 140, 248, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aim * {
+    animation: none !important;
+  }
+}
